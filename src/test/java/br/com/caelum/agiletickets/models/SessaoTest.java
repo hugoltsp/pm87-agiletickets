@@ -30,7 +30,7 @@ public class SessaoTest {
 	}
 	
 	@Test
-	public void deveVenderIngressoSeHaVaga() throws Exception {
+	public void deveVender3IngressoSeHa3Vagas() throws Exception {
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(3);
 
