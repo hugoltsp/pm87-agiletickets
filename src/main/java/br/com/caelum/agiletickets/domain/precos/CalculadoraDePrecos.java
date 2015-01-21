@@ -37,9 +37,8 @@ public class CalculadoraDePrecos {
 	private static BigDecimal calculaPreco(Sessao sessao, double taxaOcupacao,
 			double taxaUltimoLote) {
 		BigDecimal preco;
-		int ingressosDisponiveis = sessao.getTotalIngressos()
-				- sessao.getIngressosReservados();
-		if (ingressosDisponiveis / sessao.getTotalIngressos().doubleValue() <= taxaOcupacao) {
+		
+		if (sessao.getOcupacao() <= taxaOcupacao) {
 			preco = sessao.getPreco().add(
 					sessao.getPreco().multiply(BigDecimal.valueOf(taxaUltimoLote)));
 		} else {

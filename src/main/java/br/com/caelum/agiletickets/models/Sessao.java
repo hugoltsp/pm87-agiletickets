@@ -23,7 +23,7 @@ public class Sessao {
 	@ManyToOne
 	private Espetaculo espetaculo;
 
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime inicio;
 
 	private Integer duracaoEmMinutos;
@@ -63,11 +63,13 @@ public class Sessao {
 	}
 
 	public String getDia() {
-		return inicio.toString(DateTimeFormat.shortDate().withLocale(new Locale("pt", "BR")));
+		return inicio.toString(DateTimeFormat.shortDate().withLocale(
+				new Locale("pt", "BR")));
 	}
 
 	public String getHora() {
-		return inicio.toString(DateTimeFormat.shortTime().withLocale(new Locale("pt", "BR")));
+		return inicio.toString(DateTimeFormat.shortTime().withLocale(
+				new Locale("pt", "BR")));
 	}
 
 	public Integer getTotalIngressos() {
@@ -90,7 +92,7 @@ public class Sessao {
 		// faz a conta de total de ingressos menos ingressos reservados
 		return totalIngressos - ingressosReservados;
 	}
-	
+
 	public void reserva(Integer numeroDeIngressos) {
 		// soma quantidade na variavel ingressos reservados
 		this.ingressosReservados += numeroDeIngressos;
@@ -98,9 +100,9 @@ public class Sessao {
 
 	public boolean podeReservar(Integer numeroDeIngressos) {
 		int sobraram = getIngressosDisponiveis() - numeroDeIngressos;
-        boolean naoTemEspaco = sobraram < 0;
+		boolean naoTemEspaco = sobraram < 0;
 
-        return !naoTemEspaco;
+		return !naoTemEspaco;
 	}
 
 	public void setPreco(BigDecimal preco) {
@@ -110,5 +112,11 @@ public class Sessao {
 	public BigDecimal getPreco() {
 		return preco;
 	}
-	
+
+	public double getOcupacao() {
+		int ingressosDisponiveis = getTotalIngressos()
+				- getIngressosReservados();
+		return ingressosDisponiveis / getTotalIngressos().doubleValue();
+	}
+
 }
