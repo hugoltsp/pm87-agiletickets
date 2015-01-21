@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class SessaoTest {
-
+	
 	@Test
 	public void deveVender1ingressoSeHa2vagas() throws Exception {
 		Sessao sessao = new Sessao();
