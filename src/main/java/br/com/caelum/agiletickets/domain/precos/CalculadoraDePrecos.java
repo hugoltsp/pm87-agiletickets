@@ -34,12 +34,14 @@ public class CalculadoraDePrecos {
 		return preco.multiply(BigDecimal.valueOf(quantidade));
 	}
 
-	private static BigDecimal calculaPreco(Sessao sessao, double taxa1, double taxa2) {
+	private static BigDecimal calculaPreco(Sessao sessao, double taxaOcupacao,
+			double taxaUltimoLote) {
 		BigDecimal preco;
-		if ((sessao.getTotalIngressos() - sessao.getIngressosReservados())
-				/ sessao.getTotalIngressos().doubleValue() <= taxa1) {
+		int ingressosDisponiveis = sessao.getTotalIngressos()
+				- sessao.getIngressosReservados();
+		if (ingressosDisponiveis / sessao.getTotalIngressos().doubleValue() <= taxaOcupacao) {
 			preco = sessao.getPreco().add(
-					sessao.getPreco().multiply(BigDecimal.valueOf(taxa2)));
+					sessao.getPreco().multiply(BigDecimal.valueOf(taxaUltimoLote)));
 		} else {
 			preco = sessao.getPreco();
 		}
