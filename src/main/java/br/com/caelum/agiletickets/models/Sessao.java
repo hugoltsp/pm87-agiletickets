@@ -120,5 +120,14 @@ public class Sessao {
 	public BigDecimal getPreco() {
 		return preco;
 	}
+
+	public BigDecimal aumentaPrecoEmPorcentagem(Double aumento) {
+		return this.getPreco().add(this.getPreco().multiply(BigDecimal.valueOf(aumento)));
+	}
+	
+	public Double getPorcentagemDisponivel(){
+		
+		return (this.getTotalIngressos() - this.getIngressosReservados()) / this.getTotalIngressos().doubleValue();
+	}
 	
 }
