@@ -33,7 +33,7 @@ public class CalculadoraDePrecos {
 	private static BigDecimal calculaPrecoUltimoLote(Sessao sessao, BigDecimal preco,
 			double taxaOcupacao, double taxaUltimoLote) {
 
-		if (sessao.getOcupacao() <= taxaOcupacao) {
+		if (sessao.getPorcentagemOcupacao() <= taxaOcupacao) {
 			preco = preco
 					.add(preco.multiply(BigDecimal.valueOf(taxaUltimoLote)));
 		}

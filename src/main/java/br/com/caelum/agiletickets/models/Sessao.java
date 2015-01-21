@@ -113,7 +113,7 @@ public class Sessao {
 		return preco;
 	}
 
-	public double getOcupacao() {
+	public double getPorcentagemOcupacao() {
 		int ingressosDisponiveis = getTotalIngressos()
 				- getIngressosReservados();
 		return ingressosDisponiveis / getTotalIngressos().doubleValue();
