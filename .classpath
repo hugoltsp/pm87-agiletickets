@@ -18,7 +18,11 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/acceptance-test/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="lib/acceptance-test/cglib-nodep-2.1_3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/acceptance-test/commons-codec-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/acceptance-test/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/acceptance-test/commons-exec-1.1.jar"/>
