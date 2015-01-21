@@ -8,41 +8,35 @@ import br.com.caelum.agiletickets.models.TipoDeEspetaculo;
 public class CalculadoraDePrecos {
 
 	public static BigDecimal calcula(Sessao sessao, Integer quantidade) {
-		BigDecimal preco;
+		BigDecimal preco = sessao.getPreco();
 
 		switch (sessao.getEspetaculo().getTipo()) {
 		case CINEMA:
 		case SHOW:
-			// quando estiver acabando os ingressos...
-			preco = calculaPreco(sessao, 0.05, 0.10);
+			preco = calculaPrecoUltimoLote(sessao, preco, 0.05, 0.10);
 			break;
 		case BALLET:
 		case ORQUESTRA:
-			preco = calculaPreco(sessao, 0.50, 0.20);
+			preco = calculaPrecoUltimoLote(sessao, preco, 0.50, 0.20);
 
 			if (sessao.getDuracaoEmMinutos() > 60) {
 				preco = preco.add(sessao.getPreco().multiply(
 						BigDecimal.valueOf(0.10)));
 			}
 			break;
-
-		default:
-			// nao aplica aumento para teatro (quem vai é pobretão)
-			preco = sessao.getPreco();
+		case TEATRO:
+			break;
 		}
 
 		return preco.multiply(BigDecimal.valueOf(quantidade));
 	}
 
-	private static BigDecimal calculaPreco(Sessao sessao, double taxaOcupacao,
-			double taxaUltimoLote) {
-		BigDecimal preco;
-		
+	private static BigDecimal calculaPrecoUltimoLote(Sessao sessao, BigDecimal preco,
+			double taxaOcupacao, double taxaUltimoLote) {
+
 		if (sessao.getOcupacao() <= taxaOcupacao) {
-			preco = sessao.getPreco().add(
-					sessao.getPreco().multiply(BigDecimal.valueOf(taxaUltimoLote)));
-		} else {
-			preco = sessao.getPreco();
+			preco = preco
+					.add(preco.multiply(BigDecimal.valueOf(taxaUltimoLote)));
 		}
 		return preco;
 	}
