@@ -87,8 +87,7 @@ public class EspetaculoTest {
 		Periodicidade periodicidade = Periodicidade.DIARIA;
 		
 		List<Sessao> sessoes = espetaculoUnico.criaSessoes(inicio, fim, horario, periodicidade);
-		
-		assertEquals(1, sessoes.size());
+		assertEquals(1, sessoes.size());	
 		
 		Sessao sessao = sessoes.get(0);
 		
@@ -96,6 +95,56 @@ public class EspetaculoTest {
 		assertEquals(espetaculoUnico,sessao.getEspetaculo());
 	}
 	
+	@Test
+	public void deveCriarDuasSessoes() throws Exception {
+		Espetaculo espetaculoUnico = new Espetaculo();
+		
+		LocalDate inicio = new LocalDate(2015,1,22);
+		LocalDate fim = new LocalDate(2015,1,23);
+		LocalTime horario = new LocalTime(22, 00);
+		Periodicidade periodicidade = Periodicidade.DIARIA;
+		
+		List<Sessao> sessoes = espetaculoUnico.criaSessoes(inicio, fim, horario, periodicidade);
+
+		assertEquals(2, sessoes.size());
+		
+		Sessao sessao = sessoes.get(0);
+		
+		Sessao segundaSessao = sessoes.get(1);
+		
+		assertEquals(new DateTime(2015, 1, 22, 22, 00), sessao.getInicio());
+		assertEquals(new DateTime(2015, 1,23,22,00), segundaSessao.getInicio());
+		
+		assertEquals(espetaculoUnico, sessao.getEspetaculo());
+		assertEquals(espetaculoUnico, segundaSessao.getEspetaculo());
+	}
+	
+	@Test
+	public void deveCriarTresSessoes() throws Exception {
+		Espetaculo espetaculoUnico = new Espetaculo();
+		
+		LocalDate inicio = new LocalDate(2015,1,22);
+		LocalDate fim = new LocalDate(2015,1,24);
+		LocalTime horario = new LocalTime(22, 00);
+		Periodicidade periodicidade = Periodicidade.DIARIA;
+		
+		List<Sessao> sessoes = espetaculoUnico.criaSessoes(inicio, fim, horario, periodicidade);
+
+		assertEquals(3, sessoes.size());
+		
+		Sessao sessao = sessoes.get(0);
+		Sessao segundaSessao = sessoes.get(1);
+		Sessao terceiraSessao = sessoes.get(2);
+		
+		assertEquals(new DateTime(2015, 1, 22, 22, 00), sessao.getInicio());
+		assertEquals(new DateTime(2015, 1,23,22,00), segundaSessao.getInicio());
+		assertEquals(new DateTime(2015, 1,24,22,00), terceiraSessao.getInicio());
+
+		assertEquals(espetaculoUnico, sessao.getEspetaculo());
+		assertEquals(espetaculoUnico, segundaSessao.getEspetaculo());
+		assertEquals(espetaculoUnico, terceiraSessao.getEspetaculo());
+
+	}
 	
 	private Sessao sessaoComIngressosSobrando(int quantidade) {
 		Sessao sessao = new Sessao();
