@@ -159,7 +159,7 @@ public class EspetaculoTest {
 	
 		assertEquals(1, sessoes.size());
 		
-		assertEquals(new DateTime(2015,1,22,22,00),sessoes.get(0));
+		assertEquals(new DateTime(2015,1,22,22,00),sessoes.get(0).getInicio());
 	}
 	
 	private Sessao sessaoComIngressosSobrando(int quantidade) {

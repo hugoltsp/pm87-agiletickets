@@ -105,15 +105,25 @@ public class Espetaculo {
  		
 		int duracaoEspetaculo = Days.daysBetween(inicio, fim).getDays();
 		
-		for (int i = 0; i <= duracaoEspetaculo; i++) {
-			Sessao sessao = new Sessao();
-			
-			sessao.setInicio(inicio.plusDays(i).toDateTime(horario));
-			sessao.setEspetaculo(this);	
-
-			sessoes.add(sessao);
+		if(periodicidade==Periodicidade.SEMANAL){
+			for (int i = 0; i <= duracaoEspetaculo; i=i+7) {
+				Sessao sessao = new Sessao();
+				
+				sessao.setInicio(inicio.plusDays(i).toDateTime(horario));
+				sessao.setEspetaculo(this);	
+	
+				sessoes.add(sessao);
+			}
+		}else{
+			for (int i = 0; i <= duracaoEspetaculo; i++) {
+				Sessao sessao = new Sessao();
+				
+				sessao.setInicio(inicio.plusDays(i).toDateTime(horario));
+				sessao.setEspetaculo(this);	
+	
+				sessoes.add(sessao);
+			}
 		}
-		
  		return sessoes;
 	}
 	
