@@ -146,6 +146,22 @@ public class EspetaculoTest {
 
 	}
 	
+	@Test
+	public void deveCriarUmaSessaoSemanal() throws Exception {
+		Espetaculo espetaculo = new Espetaculo();
+
+		LocalDate inicio = new LocalDate(2015,1,22);
+		LocalDate fim = new LocalDate(2015,1,24);
+		LocalTime horario = new LocalTime(22, 00);
+		Periodicidade periodicidade = Periodicidade.SEMANAL;
+		
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, periodicidade);
+	
+		assertEquals(1, sessoes.size());
+		
+		assertEquals(new DateTime(2015,1,22,22,00),sessoes.get(0));
+	}
+	
 	private Sessao sessaoComIngressosSobrando(int quantidade) {
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(quantidade * 2);
